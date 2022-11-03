@@ -6,7 +6,7 @@ if (num<1){
 }
 
 else {
-while(numStart<=num){
+    while(numStart<num-1){
     if (numStart%2==0){
         Console.Write(numStart + ", ");
         numStart++;
@@ -14,8 +14,16 @@ while(numStart<=num){
     else {
         numStart++;
     }        
-    }
+}
 
 
 } 
+if(num%2==0){
+    Console.Write(num);
+    }
+else {
+    Console.Write(num-1);
+    }
+
+
 
