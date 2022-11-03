@@ -5,10 +5,17 @@ if (num<1){
     Console.WriteLine("Число меньше 1.");
 }
 
-else {while(numStart!=num){
-    Console.Write(numStart + ", ");
-    numStart++;
+else {
+while(numStart<=num){
+    if (numStart%2==0){
+        Console.Write(numStart + ", ");
+        numStart++;
+    }
+    else {
+        numStart++;
+    }        
+    }
+
 
 } 
-    Console.Write(num);
-}
+
