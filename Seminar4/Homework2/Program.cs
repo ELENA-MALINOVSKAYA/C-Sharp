@@ -2,16 +2,25 @@
 // 452 -> 11
 // 82 -> 10
 // 9012 -> 12
+
 Console.WriteLine("Введите число");
-int num = int.Parse(Console.ReadLine());
-int sum = 0;
-for (int i = 0; num > 9; i++)
+int result = SumDigitsInNumber(int.Parse(Console.ReadLine()));
+Console.WriteLine($"Сумма чисел цифры = {result}");
+
+
+static int SumDigitsInNumber (int num)
 {
-    sum = sum+ num%10;
+int numA = 0;
+int sum = 0;
+int count =0;
+
+while (num > 9)
+{
+    numA = num%10;
+    sum += numA;
+    num = num / 10;
+    count++;
 }
-// for (int i = 0; num > 9; i++)
-//{
-    num = num/10;
-//}
-//sum = sum + num;
-Console.WriteLine($"Сумма чисел цифры {num} = {sum}");
+sum += num;
+return sum;
+}
