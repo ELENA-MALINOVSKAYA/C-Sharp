@@ -10,6 +10,9 @@ for (int i = 0; i < n; i++)
 {
     int element = int.Parse(Console.ReadLine());
     array[i] = element;
-    Console.Write(array[i]);
+    
 }
-
+for (int i = 0; i < n; i++)
+{
+    Console.Write($"{(array[i])}  ");
+}
