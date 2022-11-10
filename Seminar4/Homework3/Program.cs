@@ -12,7 +12,9 @@ for (int i = 0; i < n; i++)
     array[i] = element;
     
 }
-for (int i = 0; i < n; i++)
-{
-    Console.Write($"{(array[i])}  ");
-}
+
+Console.WriteLine($"[{String.Join(",",array)}]");
+// for (int i = 0; i < n; i++)
+// {
+//     Console.WriteLine($"[{String.Join(",",array)}]");
+// }
