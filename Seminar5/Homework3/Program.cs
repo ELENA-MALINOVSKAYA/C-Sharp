@@ -1,7 +1,7 @@
 ﻿// Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
 //[3 7 22 2 78] -> 76
 
-double[] NewArr = GetRandomArray(8,1,10);
+double[] NewArr = GetRandomArray(8,0,10);
 PrintArray(NewArr);
 double diff = MaxPosition(NewArr)-MinPosition(NewArr);
 System.Console.WriteLine($"Разница между максимальным и минимальным элементов массива = {diff}");
