@@ -3,7 +3,6 @@
 //[345, 897, 568, 234] -> 2
 
 int[] NewArr = GetRandomArray(8, 100, 999);
-//System.Console.WriteLine($"[{String.Join(",",NewArr)}]");
 PrintArray(NewArr);
 int count = EvenNumbers(NewArr);
 System.Console.WriteLine($"Количество четных чисел в массиве = {count}");
