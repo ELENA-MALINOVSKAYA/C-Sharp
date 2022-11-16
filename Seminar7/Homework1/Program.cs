@@ -4,7 +4,8 @@
 // 1 -3,3 8 -9,9
 // 8 7,8 -7,1 9
 
-// Задача 50. Напишите программу, которая на вход принимает элемент в двумерном массиве, и возвращает индекс этого элемента или же указание, что такого элемента нет.
+// Задача 50. Напишите программу, которая на вход принимает элемент в двумерном массиве, и возвращает индекс этого элемента или 
+//же указание, что такого элемента нет.
 // Например, задан массив:
 // 1 4 7 2
 // 5 9 2 3
@@ -18,12 +19,20 @@
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
-    Console.WriteLine("Enter numbers n");
-    int row = int.Parse(Console.ReadLine());
-    Console.WriteLine("Enter numbers m");
-    int column = int.Parse(Console.ReadLine());
+    
+    
+    int row = Setnumbers("m");
+    int column = Setnumbers("n");
     double[,] matrix = GetRandomMatrix(row,column);
     PrintMatrix(matrix);
+
+    int Setnumbers(string name)
+    {   
+        string[] arr = name.Split(" ");
+        Console.WriteLine($"Enter numbers {name}");
+        int num = int.Parse(Console.ReadLine());
+        return num;
+    }
 
 
 double[,] GetRandomMatrix(int rows, int columns, int begin=-10, int last=10)
