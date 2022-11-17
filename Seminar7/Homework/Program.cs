@@ -33,8 +33,8 @@ void Start()
                 int column2 = Setnumbers("n");
                 int[,] matrix2 = GetRandomMatrix(row2, column2);
                 PrintMatrix(matrix2);
-                float[] arr1 = FindAvarageEachColumn(matrix2);
-                PrintArray1(arr1);
+                float[] average = FindAverageEachColumn(matrix2);
+                PrintArray1(average);
                 break;
 
             default:
@@ -139,19 +139,19 @@ bool SearchNumber(int num, int[,] matrix)
     return false;
 }
 
-float[] FindAvarageEachColumn(int[,] matrix)
+float[] FindAverageEachColumn(int[,] matrix)
 {
-    float[] avg = new float [matrix.GetLength(1)];
+    float[] avg = new float[matrix.GetLength(1)];
     for (int i = 0; i < matrix.GetLength(1); i++)
-    {   
+    {
         float sum = 0;
         for (int j = 0; j < matrix.GetLength(0); j++)
-        {            
+        {
             sum += matrix[j, i];
         }
         avg[i] = sum / matrix.GetLength(0);
     }
-return avg;
+    return avg;
 }
 
 void PrintArray1(float[] arr)
@@ -161,13 +161,13 @@ void PrintArray1(float[] arr)
 
 void FindIndex(int num, int[,] matrix)
 {
-if (SearchNumber(num, matrix))
-{
-    PrintSearchNumber(num, matrix);
-}
-else 
-{
-    Console.WriteLine("Такого элемента нет в массиве");
-}
+    if (SearchNumber(num, matrix))
+    {
+        PrintSearchNumber(num, matrix);
+    }
+    else
+    {
+        Console.WriteLine("Такого элемента нет в массиве");
+    }
 }
 
