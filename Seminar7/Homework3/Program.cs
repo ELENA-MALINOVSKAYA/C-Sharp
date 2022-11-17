@@ -9,8 +9,9 @@ int row = Setnumbers("m");
 int column = Setnumbers("n");
 int[,] matrix1 = GetRandomMatrix(row, column);
 PrintMatrix(matrix1);
-float[] arr1 = FindAvarageEachColumn(matrix1);
-PrintArray1(arr1);
+float[] Average = FindAvarageEachColumn(matrix1);
+PrintArray1(Average);
+
 
 
 int Setnumbers(string name)
@@ -47,27 +48,23 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
-
-float[] FindAvarageEachColumn(int[,] matrix)
+float[] FindAverageEachColumn(int[,] matrix)
 {
-    float[] arr = new float[matrix.GetLength(1)];
-    int k = 0;
-
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
+    float[] avg = new float [matrix.GetLength(1)];
+    for (int i = 0; i < matrix.GetLength(1); i++)
+    {   
         float sum = 0;
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            sum += matrix[i, j];
+        for (int j = 0; j < matrix.GetLength(0); j++)
+        {            
+            sum += matrix[j, i];
         }
-        arr[k] = sum/matrix.GetLength(1);
-        k++;
-
+        avg[i] = sum / matrix.GetLength(0);
     }
-return arr;
+return avg;
 }
+
 
 void PrintArray1(float[] arr)
 {
-    System.Console.Write($"[{String.Join(", ", arr)}]");
+    System.Console.Write($"[{String.Join(". ", arr)}]");
 }
