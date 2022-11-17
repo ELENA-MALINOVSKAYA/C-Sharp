@@ -69,7 +69,7 @@ void PrintSearchNumber(int num, int[,] matrix)
             if (matrix[i, j] == num)
             {
                 System.Console.WriteLine($"i={i},j={j}");
-                break; // почему не работает?
+                return; 
             }
             
         }
