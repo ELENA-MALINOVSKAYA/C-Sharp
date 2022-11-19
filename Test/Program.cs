@@ -7,10 +7,14 @@ void Start()
         Console.ReadLine();
         Console.Clear();
 
+        Console.WriteLine("Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами. m = 3, n = 4. 0,5 7 -2 -0,2");
         Console.WriteLine("Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.");
         Console.WriteLine("Задача 50. Напишите программу, которая на вход принимает элемент в двумерном массиве, и возвращает индекс этого элемента или же указание, что такого элемента нет");
         Console.WriteLine("Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.");
-
+        Console.WriteLine("Задача 53. Задайте двумерный массив из целых чисел. Поменяйте местами 1ю строку массива с последней");
+        
+        
+        
         int numTask = Setnumbers("task");
 
         switch (numTask)
@@ -44,7 +48,15 @@ void Start()
                 int[,] matrixDes = OrderedInDescending(matrix3);
                 PrintMatrix(matrixDes);
                 break;
-
+            case 53:
+                int row4 = Setnumbers("Введите число m");
+                int column4 = Setnumbers("Введите число n");
+                int[,] matrix4 = GetRandomMatrix(row4, column4);
+                PrintMatrix(matrix4);
+                System.Console.WriteLine();
+                SwapRow(matrix4);
+                PrintMatrix(matrix4);
+                break;
 
             default:
                 Console.WriteLine("error");
@@ -179,6 +191,26 @@ void FindIndex(int num, int[,] matrix)
         Console.WriteLine("Такого элемента нет в массиве");
     }
 }
+
+
+
+static int[,] SwapRow(int[,] matrix)
+{
+int rows = matrix.GetLength(0)-1;
+
+
+for (int j = 0; j < matrix.GetLength(1); j++)
+{
+int temp = matrix[0, j];
+matrix[0, j] = matrix[rows, j];
+matrix[rows, j] = temp;
+
+}
+
+return matrix;
+}
+
+
 
 
 int[,] OrderedInDescending(int[,] matrix)
