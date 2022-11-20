@@ -12,7 +12,11 @@ void Start()
         Console.WriteLine("Задача 50. Напишите программу, которая на вход принимает элемент в двумерном массиве, и возвращает индекс этого элемента или же указание, что такого элемента нет");
         Console.WriteLine("Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.");
         Console.WriteLine("Задача 53. Задайте двумерный массив из целых чисел. Поменяйте местами 1ю строку массива с последней");
-        
+        Console.WriteLine("Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.");
+
+
+
+
         
         
         int numTask = Setnumbers("task");
@@ -56,6 +60,22 @@ void Start()
                 System.Console.WriteLine();
                 SwapRow(matrix4);
                 PrintMatrix(matrix4);
+                break;
+
+            case 56:
+                int row5 = Setnumbers("Введите число m");
+                int column5 = Setnumbers("Введите число n");
+                if (row5!=column5)
+                {
+                    int[,] matrix5 = GetRandomMatrix(row5, column5);
+                    PrintMatrix(matrix5);
+                    System.Console.WriteLine();
+                    PrintMatrix(FindSummEachRow(matrix5));
+                    int minPosition = MinPositionInColumn(matrix5);
+                    System.Console.WriteLine($"{minPosition} строка");
+                }
+                else {System.Console.WriteLine("Двумерный массив не прямоугольный");}
+                
                 break;
 
             default:
@@ -237,5 +257,38 @@ int[,] OrderedInDescending(int[,] matrix)
     return matrix;
 }
 
+int[,] FindSummEachRow(int[,] matrix)
+{
+    int[,] resultSumm = new int[matrix.GetLength(0),2];
+    
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        int sum = 0;
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            sum += matrix[i, j];
+        }
+        int k = 0;
+        resultSumm[i,k] = i+1;
+        resultSumm[i,k+1] = sum;
+    }
+    return resultSumm;
+}
 
- 
+int MinPositionInColumn(int[,] matrix)
+{
+    int minPosition = 1;
+
+    for (int i = 1; i < matrix.GetLength(1); i++)
+    {
+        int min = matrix[2, i];
+
+        if (matrix[2, i] < min) continue;
+        {
+            min = matrix[2, i];
+            minPosition = i;
+        }
+
+    }
+    return minPosition;
+}
