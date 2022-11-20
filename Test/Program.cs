@@ -45,8 +45,8 @@ void Start()
                 int column3 = Setnumbers("n");
                 int[,] matrix3 = GetRandomMatrix(row3, column3);
                 PrintMatrix(matrix3);
-                int[,] matrixDes = OrderedInDescending(matrix3);
-                PrintMatrix(matrixDes);
+                System.Console.WriteLine();
+                PrintMatrix(OrderedInDescending(matrix3));
                 break;
             case 53:
                 int row4 = Setnumbers("Введите число m");
@@ -214,40 +214,28 @@ return matrix;
 
 
 int[,] OrderedInDescending(int[,] matrix)
-{   int max = MaxPosition(matrix);
-    int temp = 0;
-    // int count = 0;
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
 
-                if (matrix[i,j]<max) 
-                {
-                temp = matrix[i,j];
-                matrix[i,j] = max;
-                max = temp;
-                }
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {   
+        for (int j = 0; j < matrix.GetLength(1)-1; j++)
+        {   
+            for (int k = j+1; k < matrix.GetLength(1); k++)
+            {
+                    
+            if (matrix[i,j]>= matrix[i,k] ) continue;
+        {           
+                int temp = matrix[i,k];
+                                           
+                matrix[i,k] = matrix[i,j];
+                matrix[i,j] = temp;
+        }                     
         }
-    }
+        }       
+        }
+    
     return matrix;
 }
 
-int MaxPosition(int[,] matrix)
-{   
-    int max = i;
 
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        for (int j = 0; j < matrix.GetLength(1)-1; j++)
-        {   
-            if (matrix[i, j+1] > matrix[max])
-            {
-                matrix[max] = matrix[i, j+1];
-            }
-
-        }
-    }
-    return max;
-}
  
