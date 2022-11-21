@@ -17,8 +17,8 @@ void Start()
         Console.WriteLine("Задача 60. Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.");
         Console.WriteLine("Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.");
 
-        
-        
+
+
         int numTask = Setnumbers("task");
 
         switch (numTask)
@@ -65,7 +65,7 @@ void Start()
             case 56:
                 int row5 = Setnumbers("Введите число m");
                 int column5 = Setnumbers("Введите число n");
-                if (row5!=column5)
+                if (row5 != column5)
                 {
                     int[,] matrix5 = GetRandomMatrix(row5, column5);
                     PrintMatrix(matrix5);
@@ -74,10 +74,23 @@ void Start()
                     int minPosition = MinPositionInColumn(matrix5);
                     System.Console.WriteLine($"{minPosition} строка");
                 }
-                else {System.Console.WriteLine("Двумерный массив не прямоугольный");}
-                
+                else { System.Console.WriteLine("Двумерный массив не прямоугольный"); }
+
                 break;
             case 58:
+                int rowA = 4;
+                int columnA = 2;
+                int[,] A = GetRandomMatrix(rowA, columnA, 0, 5);
+                PrintMatrix(A);
+                System.Console.WriteLine();
+                int rowB = 2;
+                int columnB = 3;
+                int[,] B = GetRandomMatrix(rowB, columnB, 0, 5);
+                PrintMatrix(B);
+                System.Console.WriteLine();
+
+                if (columnA == rowB) { PrintMatrix(MatrixMultiplication(A, B)); }
+                else { System.Console.WriteLine($"Матрицу{A} нельзя умножить на матрицу {B}"); }
                 break;
 
             case 60:
@@ -228,18 +241,18 @@ void FindIndex(int num, int[,] matrix)
 
 static int[,] SwapRow(int[,] matrix)
 {
-int rows = matrix.GetLength(0)-1;
+    int rows = matrix.GetLength(0) - 1;
 
 
-for (int j = 0; j < matrix.GetLength(1); j++)
-{
-int temp = matrix[0, j];
-matrix[0, j] = matrix[rows, j];
-matrix[rows, j] = temp;
+    for (int j = 0; j < matrix.GetLength(1); j++)
+    {
+        int temp = matrix[0, j];
+        matrix[0, j] = matrix[rows, j];
+        matrix[rows, j] = temp;
 
-}
+    }
 
-return matrix;
+    return matrix;
 }
 
 
@@ -249,30 +262,30 @@ int[,] OrderedInDescending(int[,] matrix)
 
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
-    {   
-        for (int j = 0; j < matrix.GetLength(1)-1; j++)
-        {   
-            for (int k = j+1; k < matrix.GetLength(1); k++)
+    {
+        for (int j = 0; j < matrix.GetLength(1) - 1; j++)
+        {
+            for (int k = j + 1; k < matrix.GetLength(1); k++)
             {
-                    
-            if (matrix[i,j]>= matrix[i,k] ) continue;
-        {           
-                int temp = matrix[i,k];
-                                           
-                matrix[i,k] = matrix[i,j];
-                matrix[i,j] = temp;
-        }                     
+
+                if (matrix[i, j] >= matrix[i, k]) continue;
+                {
+                    int temp = matrix[i, k];
+
+                    matrix[i, k] = matrix[i, j];
+                    matrix[i, j] = temp;
+                }
+            }
         }
-        }       
-        }
-    
+    }
+
     return matrix;
 }
 
 int[,] FindSummEachRow(int[,] matrix)
 {
-    int[,] resultSumm = new int[matrix.GetLength(0),2];
-    
+    int[,] resultSumm = new int[matrix.GetLength(0), 2];
+
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         int sum = 0;
@@ -281,8 +294,8 @@ int[,] FindSummEachRow(int[,] matrix)
             sum += matrix[i, j];
         }
         int k = 0;
-        resultSumm[i,k] = i+1;
-        resultSumm[i,k+1] = sum;
+        resultSumm[i, k] = i + 1;
+        resultSumm[i, k + 1] = sum;
     }
     return resultSumm;
 }
@@ -305,71 +318,91 @@ int MinPositionInColumn(int[,] matrix)
     return minPosition;
 }
 
-//c ij​=a i1*​b 1j​+a i2*​b 2j​+...+a in*​b nj​. Формула произведения матрицы.
-
-
-
 int[,] SpiralMatrix4X4(int[,] matrix) //62
 {
-int num =1;
+    int num = 1;
 
-for (int j = 0; j < matrix.GetLength(1); j++)
-    {   matrix[0,j] = num;
-        num++; 
-    }
-
-for (int i = 1; i < matrix.GetLength(0); i++)
-    {   matrix[i,matrix.GetLength(1)-1] = num;
-        num++; 
-    }
-for (int j = matrix.GetLength(1)-2; j >= 0; j--)
-    {   matrix[matrix.GetLength(0)-1,j] = num;
-        num++; 
-    }
-for (int i = matrix.GetLength(0)-2; i >0; i--)
-    {   matrix[i,0] = num;
-        num++; 
-    }
-
-while (num < matrix.GetLength(0) * matrix.GetLength(1)) {
-int k = 1;
-int l = 1;
-
-while (matrix[k,l+1]==0)
-{
-    matrix[k,l] = num;
-    num++;
-    l++;
-}
-while (matrix[k+1,l]==0)
-{
-    matrix[k,l] = num;
-    num++;
-    k++;
-}
-while (matrix[k,l-1]==0)
-{
-    matrix[k,l] = num;
-    num++; 
-    l--;
-}
-while (matrix[k-1,l]==0)
-{
-    matrix[k,l] = num;
-    num++;
-    k--;
-}
-}
-
-for (int i = 0; i < matrix.GetLength(0); i++)
-{
     for (int j = 0; j < matrix.GetLength(1); j++)
     {
-        if (matrix[i,j]==0)
+        matrix[0, j] = num;
+        num++;
+    }
+
+    for (int i = 1; i < matrix.GetLength(0); i++)
+    {
+        matrix[i, matrix.GetLength(1) - 1] = num;
+        num++;
+    }
+    for (int j = matrix.GetLength(1) - 2; j >= 0; j--)
+    {
+        matrix[matrix.GetLength(0) - 1, j] = num;
+        num++;
+    }
+    for (int i = matrix.GetLength(0) - 2; i > 0; i--)
+    {
+        matrix[i, 0] = num;
+        num++;
+    }
+
+    while (num < matrix.GetLength(0) * matrix.GetLength(1))
+    {
+        int k = 1;
+        int l = 1;
+
+        while (matrix[k, l + 1] == 0)
         {
-            matrix[i,j] =num;
+            matrix[k, l] = num;
+            num++;
+            l++;
+        }
+        while (matrix[k + 1, l] == 0)
+        {
+            matrix[k, l] = num;
+            num++;
+            k++;
+        }
+        while (matrix[k, l - 1] == 0)
+        {
+            matrix[k, l] = num;
+            num++;
+            l--;
+        }
+        while (matrix[k - 1, l] == 0)
+        {
+            matrix[k, l] = num;
+            num++;
+            k--;
         }
     }
+
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            if (matrix[i, j] == 0)
+            {
+                matrix[i, j] = num;
+            }
+        }
+    }
+    return matrix;
 }
-return matrix;
+
+int[,] MatrixMultiplication(int[,] matrix1, int[,] matrix2) //58
+{
+int[,] matrix3 = new int[matrix1.GetLength(0), matrix2.GetLength(1)];
+
+for (int i = 0; i < matrix3.GetLength(0); i++)
+{
+    for (int j = 0; j < matrix3.GetLength(1); j++)
+    {
+        for(int k = 0; k < matrix2.GetLength(0); k++)
+        {
+            matrix3[i, j] += matrix1[i, k] * matrix2[k, j];
+        }
+        
+    }
+    
+}
+return matrix3;
 }
