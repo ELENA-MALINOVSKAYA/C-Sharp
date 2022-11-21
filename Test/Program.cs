@@ -8,10 +8,10 @@ void Start()
         Console.Clear();
 
         Console.WriteLine("Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами. m = 3, n = 4. 0,5 7 -2 -0,2");
-        Console.WriteLine("Задача 54. Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.");
         Console.WriteLine("Задача 50. Напишите программу, которая на вход принимает элемент в двумерном массиве, и возвращает индекс этого элемента или же указание, что такого элемента нет");
         Console.WriteLine("Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.");
         Console.WriteLine("Задача 53. Задайте двумерный массив из целых чисел. Поменяйте местами 1ю строку массива с последней");
+        Console.WriteLine("Задача 54. Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.");
         Console.WriteLine("Задача 56. Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.");
         Console.WriteLine("Задача 58. Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.");
         Console.WriteLine("Задача 60. Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.");
@@ -94,6 +94,9 @@ void Start()
                 break;
 
             case 60:
+                int[,,] matrix3D = Get3DMatrix();
+                Print3DMatrix(matrix3D);
+                System.Console.WriteLine();
                 break;
 
             case 62:
@@ -405,4 +408,76 @@ for (int i = 0; i < matrix3.GetLength(0); i++)
     
 }
 return matrix3;
+}
+
+int[,,] Get3DMatrix(int x = 2, int y = 2, int z = 2, int begin = 0, int last = 1000) //60
+{
+    int[,,] matrix = new int[x, y, z];
+    
+    for (int i = 0; i < x; i++)
+    {
+        for (int j = 0; j < y; j++)
+        {
+            for (int k = 0; k < z; k++)
+            {
+                matrix[i, j, k] = begin;
+                begin++;
+            }
+            
+        }
+    }
+    return matrix;
+}
+
+void Print3DMatrix(int[,,] matrix)
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        System.Console.WriteLine("Page: " + (i + 1));
+
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            for (int k = 0; k < matrix.GetLength(2); k++)
+            { System.Console.WriteLine(($"num = {matrix[i, j, k]}, индекс=({i},{j},{k})") + " "); }
+            Console.WriteLine();
+        }
+        Console.WriteLine();
+    }
+}
+
+int[,,] GetRandom3DMatrix(int x = 2, int y = 2, int z = 2, int begin = 1, int last = 150)
+{
+    int[,,] matrix = new int[x, y, z];
+    var random = new Random();
+    for (int i = 0; i < x; i++)
+    {
+        for (int j = 0; j < y; j++)
+        {
+            for (int k = 0; k < z; k++)
+            {
+                matrix[i, j, k] = random.Next(begin, last + 1);
+            }
+        }
+    }
+return matrix;
+}
+
+int MaxIn3DMatrix(int[,,] matrix)
+{
+    int max = matrix[0, 0, 0];
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            for (int k = 0; k < matrix.GetLength(2); k++)
+            {
+                if (matrix[i, j, k] > max)
+                {
+                    max = matrix[i, j, k];
+                }
+            }
+        }
+
+    }
+return max;
 }
