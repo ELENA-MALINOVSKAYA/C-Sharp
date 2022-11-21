@@ -8,14 +8,14 @@ void Start()
         Console.Clear();
 
         Console.WriteLine("Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами. m = 3, n = 4. 0,5 7 -2 -0,2");
-        Console.WriteLine("Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.");
+        Console.WriteLine("Задача 54. Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.");
         Console.WriteLine("Задача 50. Напишите программу, которая на вход принимает элемент в двумерном массиве, и возвращает индекс этого элемента или же указание, что такого элемента нет");
         Console.WriteLine("Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.");
         Console.WriteLine("Задача 53. Задайте двумерный массив из целых чисел. Поменяйте местами 1ю строку массива с последней");
-        Console.WriteLine("Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.");
-
-
-
+        Console.WriteLine("Задача 56. Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.");
+        Console.WriteLine("Задача 58. Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.");
+        Console.WriteLine("Задача 60. Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.");
+        Console.WriteLine("Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.");
 
         
         
@@ -77,7 +77,19 @@ void Start()
                 else {System.Console.WriteLine("Двумерный массив не прямоугольный");}
                 
                 break;
+            case 58:
+                break;
 
+            case 60:
+                break;
+
+            case 62:
+                int[,] matrix6 = new int[4, 4];
+                PrintMatrix(matrix6);
+                System.Console.WriteLine();
+                PrintMatrix(SpiralMatrix4X4(matrix6));
+
+                break;
             default:
                 Console.WriteLine("error");
                 break;
@@ -291,4 +303,73 @@ int MinPositionInColumn(int[,] matrix)
 
     }
     return minPosition;
+}
+
+//c ij​=a i1*​b 1j​+a i2*​b 2j​+...+a in*​b nj​. Формула произведения матрицы.
+
+
+
+int[,] SpiralMatrix4X4(int[,] matrix) //62
+{
+int num =1;
+
+for (int j = 0; j < matrix.GetLength(1); j++)
+    {   matrix[0,j] = num;
+        num++; 
+    }
+
+for (int i = 1; i < matrix.GetLength(0); i++)
+    {   matrix[i,matrix.GetLength(1)-1] = num;
+        num++; 
+    }
+for (int j = matrix.GetLength(1)-2; j >= 0; j--)
+    {   matrix[matrix.GetLength(0)-1,j] = num;
+        num++; 
+    }
+for (int i = matrix.GetLength(0)-2; i >0; i--)
+    {   matrix[i,0] = num;
+        num++; 
+    }
+
+while (num < matrix.GetLength(0) * matrix.GetLength(1)) {
+int k = 1;
+int l = 1;
+
+while (matrix[k,l+1]==0)
+{
+    matrix[k,l] = num;
+    num++;
+    l++;
+}
+while (matrix[k+1,l]==0)
+{
+    matrix[k,l] = num;
+    num++;
+    k++;
+}
+while (matrix[k,l-1]==0)
+{
+    matrix[k,l] = num;
+    num++; 
+    l--;
+}
+while (matrix[k-1,l]==0)
+{
+    matrix[k,l] = num;
+    num++;
+    k--;
+}
+}
+
+for (int i = 0; i < matrix.GetLength(0); i++)
+{
+    for (int j = 0; j < matrix.GetLength(1); j++)
+    {
+        if (matrix[i,j]==0)
+        {
+            matrix[i,j] =num;
+        }
+    }
+}
+return matrix;
 }
