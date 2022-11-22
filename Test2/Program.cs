@@ -5,24 +5,22 @@ if (row5 != column5)
     int[,] matrix5 = GetRandomMatrix(row5, column5);
     PrintMatrix(matrix5);
     System.Console.WriteLine();
-    // PrintMatrix(FindSummEachRow(matrix5));
-    // int[,] sum = FindSummEachRow(matrix5);
-    // int minPosition = MinPositionInColumn(matrix5);
-    // System.Console.WriteLine($"{minPosition} строка");
+    PrintMatrix(FindSummEachRow(matrix5));
+   
+    int minPosition = MinPositionInColumn(FindSummEachRow(matrix5))+1;
+    System.Console.WriteLine($"Минимальная сумма элементов находится в {minPosition} строке");
 }
 else { System.Console.WriteLine("Двумерный массив не прямоугольный"); }
-
-
-
 
 int MinPositionInColumn(int[,] matrix)
 {
     int minPosition = 0;
     int min = matrix[0, 1];
 
+
     for (int i = 1; i < matrix.GetLength(0); i++)
     {
-        if (matrix[i, 1] < min)
+        if (matrix[i, 1] < min) 
         {
             min = matrix[i, 1];
             minPosition = i;
