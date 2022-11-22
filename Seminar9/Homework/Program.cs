@@ -28,24 +28,37 @@ void Start()
                 break;
 
             case 66:
-                            string OutputOfNumbersRecursion(int number1, int number2) 
+                string OutputOfNumbersRecursion1(int numb1, int numb2) 
             { 
-                if(number1<=number2) return $"{number1} " + OutputOfNumbersRecursion(number1 +1 , number2);
+                if(numb1<=numb2) return $"{numb1} " + OutputOfNumbersRecursion1(numb1 +1 , numb2);
                 else return String.Empty;
             }
-            int M = Setnumbers("M");
-            int N = Setnumbers("N");
-                System.Console.WriteLine(OutputOfNumbersRecursion(M,N));
+                int M = Setnumbers("M");
+                int N = Setnumbers("N");
+                System.Console.WriteLine(OutputOfNumbersRecursion1(M,N));
 
                 int SummRec(int number1, int number2)
-{if(number2 == number1) return number2;
-else return number2 + SummRec(number1, number2-1);
-}
-System.Console.WriteLine(SummRec(M,N));
+                {if(number2 == number1) return number2;
+                else return number2 + SummRec(number1, number2-1);
+                }
+                System.Console.WriteLine(SummRec(M,N));
 
 
                 break;
             case 68:
+
+
+                int Accerman (int m, int n)
+                {
+                if (m==0) return n+1;
+                else if ( m>0 && n==0) return Accerman(m-1,1);
+                else return Accerman(m-1,Accerman(m,n-1)); 
+                }
+                int num1 = Setnumbers("M");
+                int num2 = Setnumbers("N");
+
+
+                System.Console.WriteLine(Accerman(num1,num2));
 
                 break;
 
