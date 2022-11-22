@@ -80,33 +80,3 @@ int Setnumbers(string name)
     int num = int.Parse(Console.ReadLine());
     return num;
 }
-
-int[,] GetRandomMatrix(int rows = 5, int columns = 5, int begin = 0, int last = 25)
-{
-    int[,] matrix = new int[rows, columns];
-    var random = new Random();
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < columns; j++)
-        {
-            matrix[i, j] = random.Next(begin, last + 1);
-        }
-    }
-    return matrix;
-}
-
-void PrintMatrix(int[,] matrix)
-{
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            System.Console.Write(matrix[i, j] + " ");
-        }
-        Console.WriteLine();
-    }
-}
-
-
-
-
