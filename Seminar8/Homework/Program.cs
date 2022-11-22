@@ -38,9 +38,9 @@ void Start()
                     PrintMatrix(matrix5);
                     System.Console.WriteLine();
                     PrintMatrix(FindSummEachRow(matrix5));
-                    int[,] sum= FindSummEachRow(matrix5);
-                    int minPosition = MinPositionInColumn(sum);
-                    System.Console.WriteLine($"{minPosition} строка");
+                
+                    int minPosition = MinPositionInColumn(FindSummEachRow(matrix5))+1;
+                    System.Console.WriteLine($"Минимальная сумма элементов находится в {minPosition} строке");
                 }
                 else { System.Console.WriteLine("Двумерный массив не прямоугольный"); }
 
@@ -163,15 +163,15 @@ int[,] FindSummEachRow(int[,] matrix)
 
 int MinPositionInColumn(int[,] matrix)
 {
-    int minPosition = 1;
+    int minPosition = 0;
+    int min = matrix[0, 1];
 
-    for (int i = 1; i < (matrix.GetLength(0)+1); i++)
+
+    for (int i = 1; i < matrix.GetLength(0); i++)
     {
-        int min = matrix[i, 2];
-
-        if (matrix[i, 2] < min) 
+        if (matrix[i, 1] < min) 
         {
-            min = matrix[i, 2];
+            min = matrix[i, 1];
             minPosition = i;
         }
 
